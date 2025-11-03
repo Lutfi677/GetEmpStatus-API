@@ -54,7 +54,7 @@ app.MapControllers();
 // Updated root endpoint with Railway deployment info
 app.MapGet("/", () => new
 {
-    message = "🚀 GetEmpStatus Web API - Deployed on Railway with Supabase!",
+    message = "GetEmpStatus Web API - Deployed on Railway with Supabase!",
     version = "1.0.0",
     framework = ".NET 9.0",
     database = "Supabase PostgreSQL",

@@ -39,3 +39,4 @@ C:\Users\lutfi\RiderProjects\GetEmpStatus\GetEmpStatus\bin\Debug\net9.0\launchse
 C:\Users\lutfi\RiderProjects\GetEmpStatus\GetEmpStatus\bin\Debug\net9.0\GetEmpStatus.staticwebassets.runtime.json
 C:\Users\lutfi\RiderProjects\GetEmpStatus\GetEmpStatus\bin\Debug\net9.0\Npgsql.dll
 C:\Users\lutfi\RiderProjects\GetEmpStatus\GetEmpStatus\bin\Debug\net9.0\appsettings.Production.json
+C:\Users\lutfi\RiderProjects\GetEmpStatus\GetEmpStatus\obj\Debug\net9.0\GetEmpStatus.sourcelink.json
