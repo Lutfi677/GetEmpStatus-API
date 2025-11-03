@@ -1,19 +1,21 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-EXPOSE 8080
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /src
-COPY ["GetEmpStatus.csproj", "."]
-RUN dotnet restore "GetEmpStatus.csproj"
-COPY . .
-WORKDIR "/src"
-RUN dotnet build "GetEmpStatus.csproj" -c Release -o /app/build
+# Copy project file and restore dependencies
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "GetEmpStatus.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out .
+
+# Railway expects the app to listen on PORT environment variable
+ENV ASPNETCORE_URLS=http://+:$PORT
+EXPOSE $PORT
+
 ENTRYPOINT ["dotnet", "GetEmpStatus.dll"]
